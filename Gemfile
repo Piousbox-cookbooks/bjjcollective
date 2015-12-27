@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'berkshelf'
+gem 'librarian-chef'
 
 group :unit do
   gem 'rubocop'

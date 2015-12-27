@@ -7,4 +7,5 @@
 # All rights reserved - Do Not Redistribute
 #
 
-package 'foo'
+include_recipe "ish::upstream_rails"
+
