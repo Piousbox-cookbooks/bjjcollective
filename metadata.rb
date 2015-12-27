@@ -6,6 +6,6 @@ description        'Installs/Configures bjjcollective'
 long_description   IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version            '0.1.0'
 
-%w{ ish }.each do |cookbook|
+%w{ ish application }.each do |cookbook|
   depends cookbook
 end
