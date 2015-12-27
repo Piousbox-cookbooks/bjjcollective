@@ -1,9 +1,8 @@
+[![Build Status](https://travis-ci.org/Piousbox-cookbooks/bjjcollective.svg?branch=master)](https://travis-ci.org/Piousbox-cookbooks/bjjcollective)
+
 bjjcollective Cookbook
 ======================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+This cookbook deploys some elements of http://bjjcollective.com
 
 Requirements
 ------------
