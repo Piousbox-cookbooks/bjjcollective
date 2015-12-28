@@ -2,7 +2,13 @@
 require 'spec_helper'
 
 describe 'bjjcollective::default' do
-  let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
+  
+  let(:chef_run) do
+    ChefSpec::SoloRunner.new do |node|
+      node.set['cookbook']['attribute'] = 'hello'
+      node.default['apache2'] = {}
+    end.converge(described_recipe)
+  end
 
   before :each do
     stubbed_apps = [
