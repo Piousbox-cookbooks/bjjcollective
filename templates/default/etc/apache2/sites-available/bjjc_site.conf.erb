@@ -1,0 +1,27 @@
+<VirtualHost *:<%= @listen_port %>>
+
+  ServerAdmin admin@wasya.co
+
+  SetEnv force-proxy-request-1.0 1
+  SetEnv proxy-nokeepalive 1
+  SetEnv proxy-initial-not-pooled 1
+  
+  KeepAlive On
+  ProxyVia On
+  ProxyPreserveHost On  
+  ProxyTimeout 2400
+  
+  <proxy>
+    Require all granted
+  </proxy>
+
+  ProxyPass        /technique/ http://127.0.0.1:<%= @angular_port %>/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /technique/ http://127.0.0.1:<%= @angular_port %>/
+  ProxyPass        /technique  http://127.0.0.1:<%= @angular_port %>/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /technique  http://127.0.0.1:<%= @angular_port %>/
+
+
+  ProxyPass        / http://127.0.0.1:<%= @appserver_port %>/ connectiontimeout=15 timeout=45
+  ProxyPassReverse / http://127.0.0.1:<%= @appserver_port %>/
+
+</VirtualHost>

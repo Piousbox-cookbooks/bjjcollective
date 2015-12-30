@@ -1,0 +1,50 @@
+<VirtualHost *:80>
+
+  ServerAdmin admin@wasya.co
+
+  ServerName  bjjc.local
+
+  SetEnv force-proxy-request-1.0 1
+  SetEnv proxy-nokeepalive 1
+  SetEnv proxy-initial-not-pooled 1
+  
+  KeepAlive On
+  ProxyVia On
+  ProxyPreserveHost On  
+  ProxyTimeout 2400
+  
+  <proxy>
+    Order deny,allow
+    Allow from all
+  </proxy>
+
+  ProxyPass        /assets/ http://127.0.0.1:3001/assets/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /assets/ http://127.0.0.1:3001/assets/
+
+  ProxyPass        /fighters_guild/ http://127.0.0.1:3001/fighters_guild/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /fighters_guild/ http://127.0.0.1:3001/fighters_guild/
+  ProxyPass        /fighters_guild  http://127.0.0.1:3001/fighters_guild connectiontimeout=15 timeout=45
+  ProxyPassReverse /fighters_guild  http://127.0.0.1:3001/fighters_guild
+
+  ProxyPass        /manager  http://127.0.0.1:3001/manager connectiontimeout=15 timeout=450
+  ProxyPassReverse /manager  http://127.0.0.1:3001/manager
+  ProxyPass        /manager/ http://127.0.0.1:3001/manager/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /manager/ http://127.0.0.1:3001/manager/
+  
+  ProxyPass        /technique/ http://127.0.0.1:8088/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /technique/ http://127.0.0.1:8088/
+  ProxyPass        /technique  http://127.0.0.1:8088/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /technique  http://127.0.0.1:8088/
+ 
+  ProxyPass        /users/ http://127.0.0.1:3001/users/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /users/ http://127.0.0.1:3001/users/
+  ProxyPass        /users  http://127.0.0.1:3001/users connectiontimeout=15 timeout=45
+  ProxyPassReverse /users  http://127.0.0.1:3001/users
+
+  ProxyPass        /sign_in.user http://127.0.0.1:3001/sign_in.user connectiontimeout=15 timeout=45
+  ProxyPassReverse /sign_in.user http://127.0.0.1:3001/sign_in.user
+
+  ProxyPass        / http://127.0.0.1:3001/ connectiontimeout=15 timeout=45
+  ProxyPassReverse / http://127.0.0.1:3001/
+
+</VirtualHost>

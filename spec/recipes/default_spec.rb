@@ -23,4 +23,8 @@ describe 'bjjcollective::default' do
     expect(chef_run).to install_package('curl')
   end
   
+  it 'runs ish::upstream_rails' do
+    expect(chef_run).to include_recipe 'ish::upstream_rails'
+  end
+  
 end
