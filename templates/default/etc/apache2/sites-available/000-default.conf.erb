@@ -1,0 +1,44 @@
+<VirtualHost *:80>
+
+  ServerAdmin admin@piousbox.com
+
+  SetEnv force-proxy-request-1.0 1
+  SetEnv proxy-nokeepalive 1
+  SetEnv proxy-initial-not-pooled 1
+
+  KeepAlive On
+  ProxyVia On
+  ProxyPreserveHost On  
+
+  <proxy>
+    Order deny,allow
+    Allow from all
+    Require all granted
+  </proxy>
+
+  ProxyPass /fighters_guild/ http://<%= @ipaddress %>:<%= @appserver_port %>/fighters_guild/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /fighters_guild/ http://<%= @ipaddress %>:<%= @appserver_port %>/fighters_guild/
+  ProxyPass /fighters_guild http://<%= @ipaddress %>:<%= @appserver_port %>/fighters_guild connectiontimeout=15 timeout=45
+  ProxyPassReverse /fighters_guild http://<%= @ipaddress %>:<%= @appserver_port %>/fighters_guild
+
+  ProxyPass /manager http://<%= @ipaddress %>:<%= @appserver_port %>/manager connectiontimeout=15 timeout=450
+  ProxyPassReverse /manager http://<%= @ipaddress %>:<%= @appserver_port %>/manager
+  ProxyPass /manager/ http://<%= @ipaddress %>:<%= @appserver_port %>/manager/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /manager/ http://<%= @ipaddress %>:<%= @appserver_port %>/manager/
+  
+  ProxyPass /users/ http://<%= @ipaddress %>:<%= @appserver_port %>/users/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /users/ http://<%= @ipaddress %>:<%= @appserver_port %>/users/
+  ProxyPass /users http://<%= @ipaddress %>:<%= @appserver_port %>/users connectiontimeout=15 timeout=45
+  ProxyPassReverse /users http://<%= @ipaddress %>:<%= @appserver_port %>/users
+
+  ProxyPass /assets/ http://<%= @ipaddress %>:<%= @appserver_port %>/assets/ connectiontimeout=15 timeout=45
+  ProxyPassReverse /assets/ http://<%= @ipaddress %>:<%= @appserver_port %>/assets/
+
+  ProxyPass /sign_in.user http://<%= @ipaddress %>:<%= @appserver_port %>/sign_in.user connectiontimeout=15 timeout=45
+  ProxyPassReverse /sign_in.user http://<%= @ipaddress %>:<%= @appserver_port %>/sign_in.user
+
+  ProxyPass / http://203.124.116.1/ connectiontimeout=15 timeout=45
+  ProxyPassReverse / http://203.124.116.1/
+
+
+</VirtualHost>
