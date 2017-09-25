@@ -70,3 +70,8 @@ end
 service "apache2" do
   action :restart
 end
+
+service "bjjcollective-app" do
+  action :restart
+end
+
